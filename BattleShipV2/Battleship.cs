@@ -8,5 +8,6 @@ namespace BattleShipV2
     {
         protected override int shipHealth { get; set; } = 4;
         public override string ShipType { get; } = "Battleship";
+        public override string AbbrType { get; } = "B";
     }
 }

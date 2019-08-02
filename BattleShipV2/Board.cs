@@ -21,9 +21,9 @@ namespace BattleShipV2
             }
         }
 
-        public void SetCoordinate(int x, int y, string shipType)
+        public void SetCoordinate(int veritcal, int horizontal, string shipType)
         {
-            drawBoard[x, y] = shipType;
+            drawBoard[veritcal, horizontal] = shipType;
         }
 
         public void PlayerBoard()

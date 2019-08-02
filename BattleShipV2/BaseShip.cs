@@ -8,6 +8,7 @@ namespace BattleShipV2
     {
         protected virtual int shipHealth { get; set; } = 4;
         public virtual string ShipType { get; } = "BaseShip";
+        public virtual string AbbrType { get; } = "S";
 
         public bool ShipDestroyed(bool x = true)
         {

@@ -11,5 +11,11 @@ namespace BattleShipV2
             string input = Console.ReadLine();           
             return input;
         }
+
+        public static int GetNumber()
+        {
+            int input = int.Parse(Console.ReadLine());
+            return input;
+        }
     }
 }

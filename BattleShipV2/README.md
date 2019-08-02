@@ -35,4 +35,4 @@ A subclass to BaseShip.cs
 - Property ShipHealth: Set to protection so only the class can access it, and override so it can set its own health
 - Property ShipType: Overrides to its proper ship type
 - Property AbbrShipType: Overrides to its proper type
-   -Marked with a lower case c to differentiate more clearly from carrier ship
+   - Marked with a lower case c to differentiate more clearly from carrier ship

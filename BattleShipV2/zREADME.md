@@ -36,3 +36,15 @@ A subclass to BaseShip.cs
 - Property ShipType: Overrides to its proper ship type
 - Property AbbrShipType: Overrides to its proper type
    - Marked with a lower case c to differentiate more clearly from carrier ship
+   
+#### Destroyer.cs
+ A subclass to BaseShip.cs
+- Property ShipHealth: Set to protection so only the class can access it, and override so it can set its own health
+- Property ShipType: Overrides to its proper ship type
+- Property AbbrShipType: Overrides to its proper type
+
+#### Menu.cs
+Presents the user a list of choices
+- StartGameChoice(): If yes it returns true, if no the game will exit
+
+#### Player.cs

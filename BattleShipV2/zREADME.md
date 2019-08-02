@@ -53,4 +53,14 @@ This is where methods are made for players to interact in the game
 - **FireOnShip():** Players will be punching in coordinates to set the array index, and if that array idex hold a value other than ~ then it's a hit.
    - Still needs implementing 
 
+### Submarine.cs
+ A subclass to BaseShip.cs
+- **Property ShipHealth:** Set to protection so only the class can access it, and override so it can set its own health
+- **Property ShipType:** Overrides to its proper ship type
+- **Property AbbrShipType:** Overrides to its proper type
 
+### UserInput.cs
+Used to obtain strings and ints from the user
+
+### WriteText.cs
+Handles are the text being displayed to the screen

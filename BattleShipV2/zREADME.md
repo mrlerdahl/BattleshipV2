@@ -1,7 +1,7 @@
-#### Game.cs
+### Game.cs
 Entry point into the game
 
-#### PlayGame.cs
+### PlayGame.cs
 - **PlayGame()**: This will create an instance of the battleship game and runs the functionality of the game by combinding all necessary methods
 
 #### BaseShip.cs

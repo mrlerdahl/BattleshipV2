@@ -16,10 +16,23 @@ This is the base class for all ships within the game
 A subclass to BaseShip.cs
 - Property ShipHealth: Set to protection so only the class can access it, and override so it can set its own health
 - Property ShipType: Overrides to its proper ship type
-- Property AbbrShipType: Overridesto its proper type
+- Property AbbrShipType: Overrides to its proper type
 
 #### Board.cs
 Handles the drawing of the board, holds the placement of ship, and holds all the hits and misses a player makes.
 - Board(): When the object is instantiated it automatically formats the array to the proper game board design
 - SetCoordinate(): Called when the specific array index needs to be set with the ship, a hit, or a miss
 - Playerboard(): Draws a board for the player to see where their ships are and to see their hits and misses
+
+#### Carrier.cs
+A subclass to BaseShip.cs
+- Property ShipHealth: Set to protection so only the class can access it, and override so it can set its own health
+- Property ShipType: Overrides to its proper ship type
+- Property AbbrShipType: Overrides to its proper type
+
+#### Cruiser.cs
+A subclass to BaseShip.cs
+- Property ShipHealth: Set to protection so only the class can access it, and override so it can set its own health
+- Property ShipType: Overrides to its proper ship type
+- Property AbbrShipType: Overrides to its proper type
+   -Marked with a lower case c to differentiate more clearly from carrier ship

@@ -11,11 +11,7 @@ namespace BattleShipV2
         public Board DisplayShips = new Board();
         public Board DisplayHitMiss = new Board();
         public BaseShip[] listOfShips = new BaseShip[] { new Carrier(), new Battleship(), new Cruiser(), new Submarine(), new Destroyer()};
-        //BaseShip carrier;
-        //BaseShip battleship;
-        //BaseShip cruiser;
-        //BaseShip submarine;
-        //BaseShip destroyer;
+       
         
         public Player(string name) => PlayerName = name;
 
@@ -31,7 +27,7 @@ namespace BattleShipV2
             {
                 count = 4;
             }
-            if (abbrShipType.Contains("R"))
+            if (abbrShipType.Contains("c"))
             {
                 count = 3;
             }
@@ -55,20 +51,25 @@ namespace BattleShipV2
                 }
                 if (direction.ToLower() == "up" && i > 0)
                 {
-                    DisplayShips.SetCoordinate(++vertical, horizontal, $" {abbrShipType}");
+                    DisplayShips.SetCoordinate(--vertical, horizontal, $" {abbrShipType}");
                 }
                 if (direction.ToLower() == "down" && i > 0)
                 {
-                    DisplayShips.SetCoordinate(--vertical, horizontal, $" {abbrShipType}");
+                    DisplayShips.SetCoordinate(++vertical, horizontal, $" {abbrShipType}");
                 }
                 DisplayShips.SetCoordinate(vertical, horizontal, $" {abbrShipType}");
             }
            
         }
 
-        public void FireOnShip(int x, int y)
+        public void FireOnShip(int x, int y, Player opponent)
         {
-
+            if (opponent.DisplayShips.GetCoordinate(x, y) == " C")
+            {
+                WriteText.HitShipText();
+                opponent.listOfShips[0].ShipHit(power);
+                
+            }
         }
 
         

@@ -21,11 +21,6 @@ namespace BattleShipV2
             }
         }
 
-        public void SetCoordinate(int veritcal, int horizontal, string shipType)
-        {
-            drawBoard[veritcal, horizontal] = shipType;
-        }
-
         public void PlayerBoard()
         {
             Console.WriteLine("     0 1 2 3 4 5 6 7 8 9");
@@ -41,5 +36,19 @@ namespace BattleShipV2
             }
             Console.WriteLine("   +---------------------+");
         }
+
+        public void SetCoordinate(int veritcal, int horizontal, string shipType)
+        {
+            drawBoard[veritcal, horizontal] = shipType;
+        }
+
+        public string GetCoordinate(int vertical, int horizontal)
+        {
+            string arrayContains;
+            arrayContains = drawBoard[vertical, horizontal];
+
+            return arrayContains;
+        }
+
     }
 }

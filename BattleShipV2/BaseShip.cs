@@ -10,14 +10,18 @@ namespace BattleShipV2
         public virtual string ShipType { get; } = "BaseShip";
         public virtual string AbbrType { get; } = "S";
 
-        public bool ShipDestroyed(bool x = true)
+        public bool ShipDestroyed(bool x = false)
         {
+            if (shipHealth == 0)
+            {
+                return true;
+            }
             return x;
         }
 
-        public void ShipHit()
+        public void ShipHit(int takeDamage)
         {
-
+            shipHealth -= takeDamage;
         }
 
     }

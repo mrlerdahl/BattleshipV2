@@ -39,9 +39,13 @@ namespace BattleShipV2
 
         }
 
-        public static void FireOnShipText()
+        public static void HitShipText()
         {
-
+            Console.WriteLine("Direct hit!");
         }
+        //public static void ShipDestroyed(string shipType)
+        //{
+        //    Console.WriteLine(");
+        //}
     }
 }

@@ -14,13 +14,12 @@ namespace BattleShipV2
 
         public static void PlayerSetShipText(Player player)
         {
-            Console.WriteLine($"\n\t{player.PlayerName}");
-            Console.WriteLine("  Place your ships");
+            Console.WriteLine($"\n\t{player.PlayerName} place your ships\n");
         }
         public static void SetShipText(BaseShip ship)
         {
             Console.WriteLine($"  Choose first coordinate for your {ship.ShipType}, then select a direction to place it");
-            Console.WriteLine("  (Ex. Left, Right, Up, or Down");
+            Console.WriteLine("  (Ex. Left, Right, Up, or Down)");
         }
         public static void CoordinateText()
         {
@@ -34,18 +33,31 @@ namespace BattleShipV2
         {
             Console.Write(" Enter direction of ship: ");
         }
-        public static void SetShipText()
-        {
-
-        }
 
         public static void HitShipText()
         {
-            Console.WriteLine("Direct hit!");
+            Console.WriteLine("\n\tDirect hit!\n");
         }
-        //public static void ShipDestroyed(string shipType)
-        //{
-        //    Console.WriteLine(");
-        //}
+        public static void MissShipText()
+        {
+            Console.WriteLine("\n\tShot missed!\n");
+        }
+        public static void ShipDestroyed(string shipType)
+        {
+            Console.WriteLine($"\n\t{shipType} destroyed!\n");
+        }
+
+        public static void PlayerTurn(Player player)
+        {
+            Console.WriteLine($"\n\t{player.PlayerName} your turn\n");
+            Console.WriteLine("\n\tPress enter to continue...");
+            Console.ReadKey();
+        }
+
+        public static void PressEnterToContinue()
+        {
+            Console.WriteLine("\n\tPress enter to continue...\n");
+            Console.ReadKey();
+        }
     }
 }

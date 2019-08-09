@@ -6,17 +6,17 @@ namespace BattleShipV2
 {
     class BaseShip
     {
-        protected virtual int shipHealth { get; set; } = 4;
+        protected virtual int shipHealth { get; set; } = 1;
         public virtual string ShipType { get; } = "BaseShip";
         public virtual string AbbrType { get; } = "S";
 
-        public bool ShipDestroyed(bool x = false)
+        public bool IsDestroyed()
         {
-            if (shipHealth == 0)
+            if (this.shipHealth == 0)
             {
                 return true;
             }
-            return x;
+            return false;
         }
 
         public void ShipHit(int takeDamage)

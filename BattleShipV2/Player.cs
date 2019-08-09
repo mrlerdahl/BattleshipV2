@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BattleShipV2
+﻿namespace BattleShipV2
 {
     class Player
     {
         public readonly string PlayerName;
         private const int power = 1;
+        private int health = 5;
         public Board DisplayShips = new Board();
         public Board DisplayHitMiss = new Board();
         public BaseShip[] listOfShips = new BaseShip[] { new Carrier(), new Battleship(), new Cruiser(), new Submarine(), new Destroyer()};
@@ -62,16 +59,102 @@ namespace BattleShipV2
            
         }
 
-        public void FireOnShip(int x, int y, Player opponent)
+        public bool IsHit(int vertical, int horizontal, Player opponent)
         {
-            if (opponent.DisplayShips.GetCoordinate(x, y) == " C")
+            if (opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains("C"))
             {
                 WriteText.HitShipText();
                 opponent.listOfShips[0].ShipHit(power);
-                
+                opponent.DisplayShips.SetCoordinate(vertical, horizontal, " X");
+                if (opponent.listOfShips[0].IsDestroyed())
+                {
+                    WriteText.ShipDestroyed(opponent.listOfShips[0].ShipType);
+                    opponent.DecreaseHealth(true);
+                }
+                return true;
+            }
+            if (opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains("B"))
+            {
+                WriteText.HitShipText();
+                opponent.listOfShips[1].ShipHit(power);
+                opponent.DisplayShips.SetCoordinate(vertical, horizontal, " X");
+                if (opponent.listOfShips[1].IsDestroyed())
+                {
+                    WriteText.ShipDestroyed(opponent.listOfShips[1].ShipType);
+                    opponent.DecreaseHealth(true);
+                }
+                return true;
+            }
+            if (opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains("c"))
+            {
+                WriteText.HitShipText();
+                opponent.listOfShips[2].ShipHit(power);
+                opponent.DisplayShips.SetCoordinate(vertical, horizontal, " X");
+                if (opponent.listOfShips[2].IsDestroyed())
+                {
+                    WriteText.ShipDestroyed(opponent.listOfShips[2].ShipType);
+                    opponent.DecreaseHealth(true);
+                }
+                return true;
+            }
+            if (opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains("S"))
+            {
+                WriteText.HitShipText();
+                opponent.listOfShips[3].ShipHit(power);
+                opponent.DisplayShips.SetCoordinate(vertical, horizontal, " X");
+                if (opponent.listOfShips[3].IsDestroyed())
+                {
+                    WriteText.ShipDestroyed(opponent.listOfShips[3].ShipType);
+                    opponent.DecreaseHealth(true);
+                }
+                return true;
+            }
+            if (opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains("D"))
+            {
+                WriteText.HitShipText();
+                opponent.listOfShips[4].ShipHit(power);
+                opponent.DisplayShips.SetCoordinate(vertical, horizontal, " X");
+                if (opponent.listOfShips[4].IsDestroyed())
+                {
+                    WriteText.ShipDestroyed(opponent.listOfShips[4].ShipType);
+                    opponent.DecreaseHealth(true);
+                }
+                return true;
+            }
+            else
+            {
+                WriteText.MissShipText();
+            }
+            return false;
+        }
+
+        public bool IsAlive()
+        {
+            if (health == 0)
+                return false;
+            return true;
+        }
+
+        public void PlotHitMiss(int vertical, int horizontal, bool shotHit)
+        {
+            if (shotHit)
+            {
+                this.DisplayHitMiss.SetCoordinate(vertical, horizontal, " H");
+            }
+            else
+            {
+                this.DisplayHitMiss.SetCoordinate(vertical, horizontal, " M");
             }
         }
 
+        public void DecreaseHealth(bool shipDestroyed)
+        {
+            if (shipDestroyed)
+            {
+                this.health -= 1;
+            }
+            
+        }
         
     }
 }

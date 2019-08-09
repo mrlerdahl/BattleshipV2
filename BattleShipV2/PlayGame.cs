@@ -20,35 +20,41 @@ namespace BattleShipV2
             int verticalCoordinate;
             string direction;
 
+            Console.Clear();
+            // PlayerOne sets their ships
             WriteText.PlayerSetShipText(playerOne);
             for (int i = 0; i < playerOne.listOfShips.Length; i++)
-            {            
+            {
+                Console.WriteLine("");
                 playerOne.DisplayShips.PlayerBoard();
                 WriteText.SetShipText(playerOne.listOfShips[i]);
-                WriteText.CoordinateText();
-                horizontalCoordinate = UserInput.GetNumber();
                 WriteText.SeconCoordinateText();
                 verticalCoordinate = UserInput.GetNumber();
+                WriteText.CoordinateText();
+                horizontalCoordinate = UserInput.GetNumber();             
                 WriteText.ChooseDirectionText();
                 direction = UserInput.GetString();
                 playerOne.setShip(verticalCoordinate, horizontalCoordinate, playerOne.listOfShips[i].AbbrType, direction);
                 Console.Clear();
             }
+            // Player two sets their ships
             WriteText.PlayerSetShipText(playerTwo);
             for (int i = 0; i < playerTwo.listOfShips.Length; i++)
             {
+                Console.WriteLine("");
                 playerTwo.DisplayShips.PlayerBoard();
                 WriteText.SetShipText(playerTwo.listOfShips[i]);
-                WriteText.CoordinateText();
-                horizontalCoordinate = UserInput.GetNumber();
                 WriteText.SeconCoordinateText();
                 verticalCoordinate = UserInput.GetNumber();
+                WriteText.CoordinateText();
+                horizontalCoordinate = UserInput.GetNumber();              
                 WriteText.ChooseDirectionText();
                 direction = UserInput.GetString();
                 playerTwo.setShip(verticalCoordinate, horizontalCoordinate, playerTwo.listOfShips[i].AbbrType, direction);
                 Console.Clear();
             }
 
+            // Game starts
             while(playerOne.IsAlive() && playerTwo.IsAlive())
             {
                 bool isHit;
@@ -82,18 +88,12 @@ namespace BattleShipV2
                 Console.Clear();
 
             }
-
+            //Determins winner
             if(playerOne.IsAlive())
                 Console.WriteLine("\n\tPlayerOne Wins!!\n");
             if(playerTwo.IsAlive())
                 Console.WriteLine("\n\tPlayerTwoWins!!\n");
 
-            //gameBoard.PlayerBoard();
-            //gameBoard.SetCoordinate(3, 4, " S");
-            //gameBoard.SetCoordinate(3, 5, " S");
-            //gameBoard.SetCoordinate(3, 6, " S");
-            //gameBoard.SetCoordinate(3, 7, " S");
-            //gameBoard.PlayerBoard();
         }
         
     }

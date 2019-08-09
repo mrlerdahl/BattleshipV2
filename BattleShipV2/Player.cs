@@ -13,6 +13,9 @@
         public Player(string name) => PlayerName = name;
 
         //TODO create a check location method to check whether a ship has been placed there or is overlapping
+
+        // Sets the ship on to the board, accepts coordinates, the type of ship so it knows what to place on the board
+        //and the direction the player chose to set the ship
         public void setShip(int vertical, int horizontal, string abbrShipType, string direction)
         {
             int count = 0;
@@ -59,6 +62,10 @@
            
         }
 
+        //Possibly make this into a loop?
+        // Accepts two points, and a Player called opponent so the current players turn can be attacking their opponents board
+        // Check to see if the location is equal to the ship type if so, it's a hit then replaced with an X marked as hit.
+        // also will decrement the ships health and check weather or not it is detroyed
         public bool IsHit(int vertical, int horizontal, Player opponent)
         {
             if (opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains("C"))
@@ -127,14 +134,14 @@
             }
             return false;
         }
-
+        // This allows the game to loop as long as both players are alive
         public bool IsAlive()
         {
             if (health == 0)
                 return false;
             return true;
         }
-
+        // Plots the hits and misses of the current players hit miss board
         public void PlotHitMiss(int vertical, int horizontal, bool shotHit)
         {
             if (shotHit)

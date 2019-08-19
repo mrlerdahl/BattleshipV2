@@ -14,7 +14,7 @@ namespace BattleShipV2
 
         public static int GetNumber()
         {
-            int input = int.Parse(Console.ReadLine());
+            int input = Validattion.NumberValidation(Console.ReadLine());
             return input;
         }
     }

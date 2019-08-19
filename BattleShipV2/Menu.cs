@@ -16,6 +16,12 @@ namespace BattleShipV2
             {
                 Environment.Exit(0);
             }
+            else
+            {
+                WriteText.InvalidInputText();
+                WriteText.StartGameText();
+                StartGameChoice(Console.ReadLine());
+            }
             return decision;
         } 
     }

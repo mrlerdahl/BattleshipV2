@@ -13,6 +13,7 @@ namespace BattleShipV2
             Console.WriteLine("");
 
             Board gameBoard = new Board();
+
             Player playerOne = new Player("PlayerOne");
             Player playerTwo = new Player("PlayerTwo");
 
@@ -63,10 +64,10 @@ namespace BattleShipV2
                 Console.Clear();
                 playerOne.DisplayShips.PlayerBoard();
                 playerOne.DisplayHitMiss.PlayerBoard();
-                WriteText.CoordinateText();
-                horizontalCoordinate = UserInput.GetNumber();
                 WriteText.SeconCoordinateText();
                 verticalCoordinate = UserInput.GetNumber();
+                WriteText.CoordinateText();
+                horizontalCoordinate = UserInput.GetNumber();                
                 isHit = playerOne.IsHit(verticalCoordinate, horizontalCoordinate, playerTwo);
                 playerOne.PlotHitMiss(verticalCoordinate, horizontalCoordinate, isHit);
                 WriteText.PressEnterToContinue();
@@ -77,10 +78,10 @@ namespace BattleShipV2
                 Console.Clear();
                 playerTwo.DisplayShips.PlayerBoard();
                 playerTwo.DisplayHitMiss.PlayerBoard();
-                WriteText.CoordinateText();
-                horizontalCoordinate = UserInput.GetNumber();
                 WriteText.SeconCoordinateText();
                 verticalCoordinate = UserInput.GetNumber();
+                WriteText.CoordinateText();
+                horizontalCoordinate = UserInput.GetNumber();               
                 isHit = playerTwo.IsHit(verticalCoordinate, horizontalCoordinate, playerOne);
                 playerTwo.PlotHitMiss(verticalCoordinate, horizontalCoordinate, isHit);
                 WriteText.PressEnterToContinue();

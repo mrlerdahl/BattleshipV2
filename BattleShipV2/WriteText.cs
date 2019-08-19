@@ -59,5 +59,21 @@ namespace BattleShipV2
             Console.WriteLine("\n\tPress enter to continue...\n");
             Console.ReadKey();
         }
+
+        public static void InvalidInputText()
+        {
+            Console.WriteLine("\n\t**Invalid input**\n");
+        }
+
+        public static void ReenterCoordinate()
+        {
+            Console.WriteLine("  Coordinate must be a number between 0 - 9");
+            Console.Write("  Enter coordinate: ");
+        }
+
+        public static void AlreadyShotHere()
+        {
+            Console.WriteLine("\n\t**You already made a shot at this location**\n");
+        }
     }
 }

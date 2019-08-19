@@ -128,9 +128,14 @@
                 }
                 return true;
             }
-            else
+            if(opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains('~'))
             {
                 WriteText.MissShipText();
+            }
+            else
+            {
+                WriteText.AlreadyShotHere();
+                IsHit(Validattion.EnterVerticalAgain(), Validattion.EnterHorizontalAgain(), opponent);
             }
             return false;
         }

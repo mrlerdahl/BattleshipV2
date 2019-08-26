@@ -26,15 +26,43 @@ namespace BattleShipV2
             WriteText.PlayerSetShipText(playerOne);
             for (int i = 0; i < playerOne.listOfShips.Length; i++)
             {
+                bool shipOverLap = false;
                 Console.WriteLine("");
                 playerOne.DisplayShips.PlayerBoard();
+
                 WriteText.SetShipText(playerOne.listOfShips[i]);
                 WriteText.SeconCoordinateText();
                 verticalCoordinate = UserInput.GetNumber();
                 WriteText.CoordinateText();
-                horizontalCoordinate = UserInput.GetNumber();             
+                horizontalCoordinate = UserInput.GetNumber();
+                shipOverLap = Validattion.IsCoordOverLap(verticalCoordinate, horizontalCoordinate, playerOne);
+
+                // This loop only runs if the user enters coordinates that they have choosen previously for a ship
+                // It will continuously run until user chooses a coordinate that is not occupied by a ship
+                while (shipOverLap)
+                {
+                    WriteText.SetShipText(playerOne.listOfShips[i]);
+                    WriteText.SeconCoordinateText();
+                    verticalCoordinate = UserInput.GetNumber();
+                    WriteText.CoordinateText();
+                    horizontalCoordinate = UserInput.GetNumber();
+                    shipOverLap = Validattion.IsCoordOverLap(verticalCoordinate, horizontalCoordinate, playerOne);
+                }
+
                 WriteText.ChooseDirectionText();
-                direction = UserInput.GetString();
+                direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerOne.listOfShips[i].AbbrType, direction, playerOne);
+
+                // This loop will verifiy the direction is not over lapping another ship
+                // Loop will keep running until a ship is not being overlapped
+                // IsShipOverLap will return true if there is an overlap other wise false
+                while (shipOverLap)
+                {
+                    WriteText.ChooseDirectionText();
+                    direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                    shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerOne.listOfShips[i].AbbrType, direction, playerOne);
+                }
+
                 playerOne.setShip(verticalCoordinate, horizontalCoordinate, playerOne.listOfShips[i].AbbrType, direction);
                 Console.Clear();
             }
@@ -42,15 +70,40 @@ namespace BattleShipV2
             WriteText.PlayerSetShipText(playerTwo);
             for (int i = 0; i < playerTwo.listOfShips.Length; i++)
             {
+                bool shipOverLap = false;
                 Console.WriteLine("");
                 playerTwo.DisplayShips.PlayerBoard();
+
                 WriteText.SetShipText(playerTwo.listOfShips[i]);
                 WriteText.SeconCoordinateText();
                 verticalCoordinate = UserInput.GetNumber();
                 WriteText.CoordinateText();
-                horizontalCoordinate = UserInput.GetNumber();              
+                horizontalCoordinate = UserInput.GetNumber();
+                shipOverLap = Validattion.IsCoordOverLap(verticalCoordinate, horizontalCoordinate, playerTwo);
+
+                // This loop only runs if the user enters coordinates that they have choosen previously for a ship
+                // It will continuously run until user chooses a coordinate that is not occupied by a ship
+                while (shipOverLap)
+                {
+                    WriteText.SetShipText(playerTwo.listOfShips[i]);
+                    WriteText.SeconCoordinateText();
+                    verticalCoordinate = UserInput.GetNumber();
+                    WriteText.CoordinateText();
+                    horizontalCoordinate = UserInput.GetNumber();
+                    shipOverLap = Validattion.IsCoordOverLap(verticalCoordinate, horizontalCoordinate, playerTwo);
+                }
+
                 WriteText.ChooseDirectionText();
-                direction = UserInput.GetString();
+                direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerTwo.listOfShips[i].AbbrType, direction, playerTwo);
+
+                while (shipOverLap)
+                {
+                    WriteText.ChooseDirectionText();
+                    direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                    shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerTwo.listOfShips[i].AbbrType, direction, playerTwo);
+                }
+                
                 playerTwo.setShip(verticalCoordinate, horizontalCoordinate, playerTwo.listOfShips[i].AbbrType, direction);
                 Console.Clear();
             }

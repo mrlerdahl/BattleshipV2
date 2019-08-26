@@ -62,7 +62,7 @@ namespace BattleShipV2
 
         public static void InvalidInputText()
         {
-            Console.WriteLine("\n\t**Invalid input**\n");
+            Console.WriteLine("\n\t** Invalid input **\n");
         }
 
         public static void ReenterCoordinate()
@@ -73,7 +73,14 @@ namespace BattleShipV2
 
         public static void AlreadyShotHere()
         {
-            Console.WriteLine("\n\t**You already made a shot at this location**\n");
+            Console.WriteLine("\n\t** You already made a shot at this location **\n");
         }
+
+        public static void ShipOverLap()
+        {
+            Console.WriteLine("\n\t** Invalid: Can not over lap ships **\n");
+        }
+
+       
     }
 }

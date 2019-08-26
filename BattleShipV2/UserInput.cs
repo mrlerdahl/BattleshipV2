@@ -8,7 +8,7 @@ namespace BattleShipV2
     {
         public static string GetString()
         {
-            string input = Console.ReadLine();           
+            string input = Console.ReadLine().ToLower() ;           
             return input;
         }
 

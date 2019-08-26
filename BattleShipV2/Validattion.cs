@@ -55,5 +55,91 @@ namespace BattleShipV2
 
             return true;
         }
+
+        public static string EnterDirectionValidation(string input)
+        {
+            if (!input.Equals("right") && !input.Equals("left") && !input.Equals("down") && !input.Equals("up"))
+            {
+                WriteText.InvalidInputText();
+                WriteText.ChooseDirectionText();
+                input = EnterDirectionValidation(UserInput.GetString());
+            }
+
+            return input;
+        }
+        
+        public static bool IsCoordOverLap(int verticalCoordinate, int horizontalCoordinate, Player playerBoard)
+        {
+            bool shipOverLap = false;
+            if(!playerBoard.DisplayShips.GetCoordinate(verticalCoordinate, horizontalCoordinate).Contains("~"))
+            {
+                WriteText.ShipOverLap();
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool IsShipOverLap(int verticalCoordinate, int horizontalCoordinate, string abbrShipType, string direction,  Player playerBoard)
+        {
+            int count = 0;
+            if (abbrShipType.Contains("C"))
+            {
+                count = 5;
+            }
+            if (abbrShipType.Contains("B"))
+            {
+                count = 4;
+            }
+            if (abbrShipType.Contains("c"))
+            {
+                count = 3;
+            }
+            if (abbrShipType.Contains("S"))
+            {
+                count = 3;
+            }
+            if (abbrShipType.Contains("D"))
+            {
+                count = 2;
+            }
+            for (int i = 0; i < count; i++)
+            {
+                if (direction.ToLower() == "left" && i > 0)
+                {
+                    if (!playerBoard.DisplayShips.GetCoordinate(verticalCoordinate, --horizontalCoordinate).Contains("~"))
+                    {
+                        WriteText.ShipOverLap();
+                        return true;
+                    }
+                }
+                if (direction.ToLower() == "right" && i > 0)
+                {
+                    if (!playerBoard.DisplayShips.GetCoordinate(verticalCoordinate, ++horizontalCoordinate).Contains("~"))
+                    {
+                        WriteText.ShipOverLap();
+                        return true;
+                    }
+                }
+                if (direction.ToLower() == "up" && i > 0)
+                {
+                    if (!playerBoard.DisplayShips.GetCoordinate(--verticalCoordinate, horizontalCoordinate).Contains("~"))
+                    {
+                        WriteText.ShipOverLap();
+                        return true;
+                    }
+                }
+                if (direction.ToLower() == "down" && i > 0)
+                {
+                    if (!playerBoard.DisplayShips.GetCoordinate(++verticalCoordinate, horizontalCoordinate).Contains("~"))
+                    {
+                        WriteText.ShipOverLap();
+                        return true;
+                    }
+                }
+            } 
+
+            return false;
+        }
     }
 }

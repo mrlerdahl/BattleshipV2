@@ -1,21 +1,18 @@
-﻿namespace BattleShipV2
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace BattleShipV2
 {
-    class Player
+    class Computer
     {
-        public readonly string PlayerName;
+        public readonly string PlayerName = "Computer";
         private const int power = 1;
         private int health = 5;
         public Board DisplayShips = new Board();
         public Board DisplayHitMiss = new Board();
-        public BaseShip[] listOfShips = new BaseShip[] { new Carrier(), new Battleship(), new Cruiser(), new Submarine(), new Destroyer()};
-       
-        
-        public Player(string name) => PlayerName = name;
+        public BaseShip[] listOfShips = new BaseShip[] { new Carrier(), new Battleship(), new Cruiser(), new Submarine(), new Destroyer() };
 
-        //TODO create a check location method to check whether a ship has been placed there or is overlapping
-
-        // Sets the ship on to the board, accepts coordinates, the type of ship so it knows what to place on the board
-        //and the direction the player chose to set the ship
         public void setShip(int vertical, int horizontal, string abbrShipType, string direction)
         {
             int count = 0;
@@ -41,7 +38,7 @@
             }
             for (int i = 0; i < count; i++)
             {
-                if(direction.ToLower() == "left" && i > 0)
+                if (direction.ToLower() == "left" && i > 0)
                 {
                     DisplayShips.SetCoordinate(vertical, --horizontal, $" {abbrShipType}");
                 }
@@ -59,7 +56,7 @@
                 }
                 DisplayShips.SetCoordinate(vertical, horizontal, $" {abbrShipType}");
             }
-           
+
         }
 
         //Possibly make this into a loop?
@@ -128,7 +125,7 @@
                 }
                 return true;
             }
-            if(opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains('~'))
+            if (opponent.DisplayShips.GetCoordinate(vertical, horizontal).Contains('~'))
             {
                 WriteText.MissShipText();
             }
@@ -165,8 +162,7 @@
             {
                 this.health -= 1;
             }
-            
+
         }
-        
     }
 }

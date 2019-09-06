@@ -4,15 +4,12 @@ using System.Text;
 
 namespace BattleShipV2
 {
-    class PlayGame
+    class PlayerVsPlayer
     {
-        public PlayGame()
-        {
+        public PlayerVsPlayer(){
             WriteText.StartGameText();
             Menu.StartGameChoice(UserInput.GetString());
             Console.WriteLine("");
-
-            new PlayerVsPlayer();
 
             Board gameBoard = new Board();
 
@@ -22,13 +19,16 @@ namespace BattleShipV2
             int horizontalCoordinate;
             int verticalCoordinate;
             string direction;
+            bool shipOverLap = true;
+            bool directionOutOfBounds = true;
 
             Console.Clear();
+
             // PlayerOne sets their ships
             WriteText.PlayerSetShipText(playerOne);
             for (int i = 0; i < playerOne.listOfShips.Length; i++)
             {
-                bool shipOverLap = false;
+                
                 Console.WriteLine("");
                 playerOne.DisplayShips.PlayerBoard();
 
@@ -51,9 +51,22 @@ namespace BattleShipV2
                     shipOverLap = Validattion.IsCoordOverLap(verticalCoordinate, horizontalCoordinate, playerOne);
                 }
 
+
                 WriteText.ChooseDirectionText();
                 direction = Validattion.EnterDirectionValidation(UserInput.GetString());
-                shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerOne.listOfShips[i].AbbrType, direction, playerOne);
+                // verifies that the direction doesn't go out of bounds
+                directionOutOfBounds = Validattion.IsDirectionOutOfBounds(verticalCoordinate, horizontalCoordinate, direction, playerOne.listOfShips[i].AbbrType);
+
+                // this will loop until player chooses a direction that does not go out of bounds
+                while (directionOutOfBounds)
+                {
+                    WriteText.ChooseDirectionText();
+                    direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                    directionOutOfBounds = Validattion.IsDirectionOutOfBounds(verticalCoordinate, horizontalCoordinate, direction, playerOne.listOfShips[i].AbbrType);
+                }
+
+                // verifies the that the ships don't over lap
+               shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerOne.listOfShips[i].AbbrType, direction, playerOne);
 
                 // This loop will verifiy the direction is not over lapping another ship
                 // Loop will keep running until a ship is not being overlapped
@@ -62,6 +75,15 @@ namespace BattleShipV2
                 {
                     WriteText.ChooseDirectionText();
                     direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                    // To revalidate if direction is out of bounds
+                    directionOutOfBounds = Validattion.IsDirectionOutOfBounds(verticalCoordinate, horizontalCoordinate, direction, playerOne.listOfShips[i].AbbrType);
+                    // keep looping if direction is out of bounds
+                    while (directionOutOfBounds)
+                    {
+                        WriteText.ChooseDirectionText();
+                        direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                        directionOutOfBounds = Validattion.IsDirectionOutOfBounds(verticalCoordinate, horizontalCoordinate, direction, playerOne.listOfShips[i].AbbrType);
+                    }
                     shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerOne.listOfShips[i].AbbrType, direction, playerOne);
                 }
 
@@ -69,11 +91,11 @@ namespace BattleShipV2
                 Console.Clear();
             }
 
+
             // Player two sets their ships
             WriteText.PlayerSetShipText(playerTwo);
             for (int i = 0; i < playerTwo.listOfShips.Length; i++)
             {
-                bool shipOverLap = false;
                 Console.WriteLine("");
                 playerTwo.DisplayShips.PlayerBoard();
 
@@ -98,21 +120,46 @@ namespace BattleShipV2
 
                 WriteText.ChooseDirectionText();
                 direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                // verifies that the direction doesn't go out of bounds
+                directionOutOfBounds = Validattion.IsDirectionOutOfBounds(verticalCoordinate, horizontalCoordinate, direction, playerTwo.listOfShips[i].AbbrType);
+
+                // this will loop until player chooses a direction that does not go out of bounds
+                while (directionOutOfBounds)
+                {
+                    WriteText.ChooseDirectionText();
+                    direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                    directionOutOfBounds = Validattion.IsDirectionOutOfBounds(verticalCoordinate, horizontalCoordinate, direction, playerTwo.listOfShips[i].AbbrType);
+                }
+
+                // verifies the that the ships don't over lap
                 shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerTwo.listOfShips[i].AbbrType, direction, playerTwo);
 
+                // This loop will verifiy the direction is not over lapping another ship
+                // Loop will keep running until a ship is not being overlapped
+                // IsShipOverLap will return true if there is an overlap other wise false
                 while (shipOverLap)
                 {
                     WriteText.ChooseDirectionText();
                     direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                    // To revalidate if direction is out of bounds
+                    directionOutOfBounds = Validattion.IsDirectionOutOfBounds(verticalCoordinate, horizontalCoordinate, direction, playerTwo.listOfShips[i].AbbrType);
+                    // keep looping if direction is out of bounds
+                    while (directionOutOfBounds)
+                    {
+                        WriteText.ChooseDirectionText();
+                        direction = Validattion.EnterDirectionValidation(UserInput.GetString());
+                        directionOutOfBounds = Validattion.IsDirectionOutOfBounds(verticalCoordinate, horizontalCoordinate, direction, playerTwo.listOfShips[i].AbbrType);
+                    }
                     shipOverLap = Validattion.IsShipOverLap(verticalCoordinate, horizontalCoordinate, playerTwo.listOfShips[i].AbbrType, direction, playerTwo);
                 }
-                
+
                 playerTwo.setShip(verticalCoordinate, horizontalCoordinate, playerTwo.listOfShips[i].AbbrType, direction);
                 Console.Clear();
             }
 
+
             // Game starts
-            while(playerOne.IsAlive() && playerTwo.IsAlive())
+            while (playerOne.IsAlive() && playerTwo.IsAlive())
             {
                 bool isHit;
                 bool sameShotSpot;
@@ -173,12 +220,12 @@ namespace BattleShipV2
 
             }
             //Determins winner
-            if(playerOne.IsAlive())
+            if (playerOne.IsAlive())
                 Console.WriteLine("\n\tPlayerOne Wins!!\n");
-            if(playerTwo.IsAlive())
+            if (playerTwo.IsAlive())
                 Console.WriteLine("\n\tPlayerTwoWins!!\n");
 
         }
-        
+
     }
 }

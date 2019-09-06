@@ -81,6 +81,10 @@ namespace BattleShipV2
             Console.WriteLine("\n\t** Invalid: Can not over lap ships **\n");
         }
 
-       
+       public static void DirectionOutOfBounds()
+        {
+            Console.WriteLine("\n\t** That direction is out of bounds **\n");
+        }
+
     }
 }

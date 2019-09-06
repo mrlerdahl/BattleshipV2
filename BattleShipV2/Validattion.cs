@@ -70,7 +70,7 @@ namespace BattleShipV2
         
         public static bool IsCoordOverLap(int verticalCoordinate, int horizontalCoordinate, Player playerBoard)
         {
-            bool shipOverLap = false;
+           
             if(!playerBoard.DisplayShips.GetCoordinate(verticalCoordinate, horizontalCoordinate).Contains("~"))
             {
                 WriteText.ShipOverLap();
@@ -137,7 +137,86 @@ namespace BattleShipV2
                         return true;
                     }
                 }
-            } 
+            }
+
+            
+            
+
+            return false;
+        }
+
+        public static bool IsSameShotSpot(int verticalCoordinate, int horizontalCoordinate, Player playerBoard)
+        {
+
+            if (!playerBoard.DisplayHitMiss.GetCoordinate(verticalCoordinate, horizontalCoordinate).Contains("~"))
+            {
+                WriteText.AlreadyShotHere();
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool IsDirectionOutOfBounds(int verticalCoordinate, int horizontalCoordinate, string direction, string shipType)
+        {
+            int count = 0;
+            if (shipType.Contains("C"))
+            {
+                count = 5;
+            }
+            if (shipType.Contains("B"))
+            {
+                count = 4;
+            }
+            if (shipType.Contains("c"))
+            {
+                count = 3;
+            }
+            if (shipType.Contains("S"))
+            {
+                count = 3;
+            }
+            if (shipType.Contains("D"))
+            {
+                count = 2;
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                if (direction.ToLower() == "left")
+                {
+                    if (--horizontalCoordinate < 0)
+                    {
+                        WriteText.DirectionOutOfBounds();
+                        return true;
+                    }          
+                    
+                }
+                if(direction.ToLower() == "right")
+                {
+                    if (++horizontalCoordinate > 9)
+                    {
+                        WriteText.DirectionOutOfBounds();
+                        return true;
+                    }
+                }
+                if(direction.ToLower() == "up")
+                {
+                    if (--verticalCoordinate < 0)
+                    {
+                        WriteText.DirectionOutOfBounds();
+                        return true;
+                    }
+                }
+                if(direction.ToLower() == "down")
+                {
+                    if (++verticalCoordinate > 9)
+                    {
+                        WriteText.DirectionOutOfBounds();
+                        return true;
+                    }
+                }
+            }
 
             return false;
         }

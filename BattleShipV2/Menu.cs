@@ -23,6 +23,28 @@ namespace BattleShipV2
                 StartGameChoice(Console.ReadLine());
             }
             return decision;
-        } 
+        }
+        
+        public static bool GameSelection(int input)
+        {
+            if (input == 1)
+            {
+                return true;
+            }
+            if(input == 2)
+            {
+                return false;
+            }
+            else
+            {
+                WriteText.InvalidInputText();
+                WriteText.PlayerOrComputerSelection();
+                GameSelection(UserInput.GetNumber());
+            }
+
+            return false;
+        }
+
+
     }
 }

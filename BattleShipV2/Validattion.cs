@@ -73,7 +73,8 @@ namespace BattleShipV2
            
             if(!playerBoard.DisplayShips.GetCoordinate(verticalCoordinate, horizontalCoordinate).Contains("~"))
             {
-                WriteText.ShipOverLap();
+                if(!playerBoard.PlayerName.Equals("Computer"))
+                    WriteText.ShipOverLap();
                 return true;
             }
 
@@ -109,7 +110,8 @@ namespace BattleShipV2
                 {
                     if (!playerBoard.DisplayShips.GetCoordinate(verticalCoordinate, --horizontalCoordinate).Contains("~"))
                     {
-                        WriteText.ShipOverLap();
+                        if(!playerBoard.PlayerName.Equals("Computer"))
+                            WriteText.ShipOverLap();
                         return true;
                     }
                 }
@@ -117,7 +119,8 @@ namespace BattleShipV2
                 {
                     if (!playerBoard.DisplayShips.GetCoordinate(verticalCoordinate, ++horizontalCoordinate).Contains("~"))
                     {
-                        WriteText.ShipOverLap();
+                        if (!playerBoard.PlayerName.Equals("Computer"))
+                            WriteText.ShipOverLap();
                         return true;
                     }
                 }
@@ -125,7 +128,8 @@ namespace BattleShipV2
                 {
                     if (!playerBoard.DisplayShips.GetCoordinate(--verticalCoordinate, horizontalCoordinate).Contains("~"))
                     {
-                        WriteText.ShipOverLap();
+                        if (!playerBoard.PlayerName.Equals("Computer"))
+                            WriteText.ShipOverLap();
                         return true;
                     }
                 }
@@ -133,7 +137,8 @@ namespace BattleShipV2
                 {
                     if (!playerBoard.DisplayShips.GetCoordinate(++verticalCoordinate, horizontalCoordinate).Contains("~"))
                     {
-                        WriteText.ShipOverLap();
+                        if (!playerBoard.PlayerName.Equals("Computer"))
+                            WriteText.ShipOverLap();
                         return true;
                     }
                 }
@@ -157,7 +162,7 @@ namespace BattleShipV2
             return false;
         }
 
-        public static bool IsDirectionOutOfBounds(int verticalCoordinate, int horizontalCoordinate, string direction, string shipType)
+        public static bool IsDirectionOutOfBounds(int verticalCoordinate, int horizontalCoordinate, string direction, string shipType, Player player)
         {
             int count = 0;
             if (shipType.Contains("C"))
@@ -187,7 +192,8 @@ namespace BattleShipV2
                 {
                     if (--horizontalCoordinate < 0)
                     {
-                        WriteText.DirectionOutOfBounds();
+                        if (!player.PlayerName.Equals("Computer"))
+                            WriteText.DirectionOutOfBounds();
                         return true;
                     }          
                     
@@ -196,7 +202,8 @@ namespace BattleShipV2
                 {
                     if (++horizontalCoordinate > 9)
                     {
-                        WriteText.DirectionOutOfBounds();
+                        if (!player.PlayerName.Equals("Computer"))
+                            WriteText.DirectionOutOfBounds();
                         return true;
                     }
                 }
@@ -204,7 +211,8 @@ namespace BattleShipV2
                 {
                     if (--verticalCoordinate < 0)
                     {
-                        WriteText.DirectionOutOfBounds();
+                        if (!player.PlayerName.Equals("Computer"))
+                            WriteText.DirectionOutOfBounds();
                         return true;
                     }
                 }
@@ -212,7 +220,8 @@ namespace BattleShipV2
                 {
                     if (++verticalCoordinate > 9)
                     {
-                        WriteText.DirectionOutOfBounds();
+                        if (!player.PlayerName.Equals("Computer"))
+                            WriteText.DirectionOutOfBounds();
                         return true;
                     }
                 }
@@ -220,5 +229,19 @@ namespace BattleShipV2
 
             return false;
         }
+
+        public static int ComputerInRangeValidation(int valNum)
+        {
+            
+            if (valNum < 0 || valNum > 9)
+            {
+                Random r = new Random();
+                ComputerInRangeValidation(r.Next(9));
+            }
+ 
+            return valNum;
+        }
+
+
     }
 }

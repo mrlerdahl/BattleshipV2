@@ -86,5 +86,19 @@ namespace BattleShipV2
             Console.WriteLine("\n\t** That direction is out of bounds **\n");
         }
 
+        public static void PlayerOrComputerSelection()
+        {
+            Console.WriteLine("\n  Choose your game type: ");
+            Console.WriteLine("  1. Player Vs. Player");
+            Console.WriteLine("  2. Player Vs. Computer");
+            Console.Write("  Enter: ");
+        }
+
+
+        public static void ComputerSettingShips()
+        {
+            Console.WriteLine("\n\tThe computer is placing it's ships");
+        }
+
     }
 }

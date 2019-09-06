@@ -168,5 +168,30 @@
             
         }
         
+        public string ComputerChooseDirection(int input)
+        {
+            string direction;
+            switch (input)
+            {
+                case 0:
+                    direction = "left";
+                    break;
+                case 1:
+                    direction = "right";
+                    break;
+                case 2:
+                    direction = "up";
+                    break;
+                case 3:
+                    direction = "down";
+                    break;
+                default:
+                    direction = "left";
+                    break;
+            }
+
+            return direction;
+        }
+
     }
 }

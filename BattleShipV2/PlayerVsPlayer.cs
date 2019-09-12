@@ -14,8 +14,8 @@ namespace BattleShipV2
             int horizontalCoordinate;
             int verticalCoordinate;
             string direction;
-            bool shipOverLap = true;
-            bool directionOutOfBounds = true;
+            bool shipOverLap;
+            bool directionOutOfBounds;
 
             Console.Clear();
 

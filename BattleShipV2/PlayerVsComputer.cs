@@ -51,6 +51,7 @@ namespace BattleShipV2
                 
             }
 
+            computerPlayer.DisplayShips.PlayerBoard();
             WriteText.PressEnterToContinue();
             Console.Clear();
 

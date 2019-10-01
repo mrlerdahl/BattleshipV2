@@ -91,7 +91,61 @@ namespace BattleShipV2
                 Console.Clear();
             }
 
-            
+            // Game starts
+            while (playerOne.IsAlive() && computerPlayer.IsAlive())
+            {
+                bool isHit;
+                bool sameShotSpot;
+                Console.WriteLine("\n\tLets play!!\n");
+                WriteText.PlayerTurn(playerOne);
+                Console.Clear();
+                playerOne.DisplayShips.PlayerBoard();
+                playerOne.DisplayHitMiss.PlayerBoard();
+
+                // Keeps looping until the player enters a location they have not already shot in
+                do
+                {
+                    WriteText.SeconCoordinateText();
+                    verticalCoordinate = UserInput.GetNumber();
+                    WriteText.CoordinateText();
+                    horizontalCoordinate = UserInput.GetNumber();
+                    sameShotSpot = Validattion.IsSameShotSpot(verticalCoordinate, horizontalCoordinate, playerOne);
+                } while (sameShotSpot);
+
+                isHit = playerOne.IsHit(verticalCoordinate, horizontalCoordinate, computerPlayer);
+                playerOne.PlotHitMiss(verticalCoordinate, horizontalCoordinate, isHit);
+                WriteText.PressEnterToContinue();
+
+                Console.Clear();
+
+                WriteText.PlayerTurn(computerPlayer);
+                Console.Clear();
+                //computerPlayer.DisplayShips.PlayerBoard();
+                //computerPlayer.DisplayHitMiss.PlayerBoard();
+
+                // Same shot validation loop
+                do
+                {
+                    verticalCoordinate = computerInput.Next(0, 9);
+                    horizontalCoordinate = computerInput.Next(0, 9);
+                    sameShotSpot = Validattion.IsSameShotSpot(verticalCoordinate, horizontalCoordinate, playerOne);
+                } while (sameShotSpot);
+
+                isHit = computerPlayer.IsHit(verticalCoordinate, horizontalCoordinate, playerOne);
+                computerPlayer.PlotHitMiss(verticalCoordinate, horizontalCoordinate, isHit);
+                WriteText.PressEnterToContinue();
+
+                Console.Clear();
+
+            }
+
+            //Determins winner
+            if (playerOne.IsAlive())
+                Console.WriteLine("\n\tPlayerOne Wins!!\n");
+            if (computerPlayer.IsAlive())
+                Console.WriteLine("\n\tPlayerTwoWins!!\n");
+
+        
 
         }
     }
